@@ -1,8 +1,8 @@
 import React from "react";
 
-export default ({ name, toggle }) => {
+export default ({ toggle }) => {
   if (toggle) {
-    return <h1>Hello {name}!</h1>;
+    return <h1>Hello!</h1>;
   }
-  return <h1>Click the button</h1>;
+  return "";
 };

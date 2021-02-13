@@ -1,31 +1,26 @@
-import React, { Component } from "react";
-import { render } from "react-dom";
-import Chart from "./Chart";
+import * as React from "react";
+import { render } from "react-dom";import Chart from "./Chart";
+
+const { useState } = React;
+const rootElement = document.getElementById("root");
+
+
 import "./style.css";
 
-interface AppProps {}
-interface AppState {
-  name: string;
-  toggle: boolean;
-}
+const App = () => {
+  const [toggled, setToggled] = useState(false);
 
-class App extends Component<AppProps, AppState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: "React",
-      toggle: true
-    };
-  }
 
-  render() {
-    return (
-      <div>
-        <button>Toggle Chart</button>
-        <Chart name={this.state.name} toggle={this.state.toggle} />
-      </div>
-    );
-  }
-}
+  const setToggle = () => {
+    setToggled(!toggled);
+  };
 
-render(<App />, document.getElementById("root"));
+  return (
+    <div className="App">
+      <button onClick={() => setToggle()}>Toggle Chart</button>
+      <Chart toggle={toggled} />
+    </div>
+  );
+};
+
+render(<App />, rootElement);
