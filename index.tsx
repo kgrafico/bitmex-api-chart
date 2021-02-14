@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import Chart from "./Chart";
-import { initServer, initWS } from "./lib/serve";
 import {
   port,
   testnet,
@@ -18,7 +17,6 @@ import "./style.css";
 
 const App = () => {
   const [toggled, setToggled] = useState(false);
-  const [data, setData] = useState([]);
 
   const config = {
     port,
@@ -29,11 +27,6 @@ const App = () => {
     apiKeySecret,
     maxTableLen
   };
-
-  useEffect(() => {
-    const app = initServer(config);
-    initWS(app);
-  }, []);
 
   const setToggle = () => {
     setToggled(!toggled);
