@@ -9,9 +9,20 @@ const Chart = ({ toggle }) => {
   const timeout = 60000;
 
   const connect = () => {
+    const subscribe = {
+      event: "bts:subscribe",
+      data: {
+        channel: ``
+      }
+    };
     ws.onopen = () => {
       console.log("connected websocket main component");
       setData({ ws: ws });
+      ws.send(JSON.stringify(subscribe));
+    };
+    ws.onmessage = event => {
+      const response = JSON.parse(event.data);
+      console.log(response.data);
     };
   };
 
