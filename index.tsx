@@ -1,15 +1,16 @@
-import * as React from "react";
-import { render } from "react-dom";import Chart from "./Chart";
+import React, { useState } from "react";
+import { render } from "react-dom";
+import Chart from "./Chart";
+import test from "./lib/example";
+import { port } from "./lib/config";
 
-const { useState } = React;
 const rootElement = document.getElementById("root");
-
 
 import "./style.css";
 
 const App = () => {
   const [toggled, setToggled] = useState(false);
-
+  const [data, setData] = useState([]);
 
   const setToggle = () => {
     setToggled(!toggled);
