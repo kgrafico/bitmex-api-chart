@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
 import Chart from "./Chart";
-import test from "./lib/example";
+import { initServer, initWS } from "./lib/serve";
 import { port } from "./lib/config";
 
 const rootElement = document.getElementById("root");
