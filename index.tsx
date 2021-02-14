@@ -1,10 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
 import Chart from "./Chart";
 import { initServer, initWS } from "./lib/serve";
-import config from "./lib/config";
-const app = initServer(config);
-initWS(app);
+import {
+  port,
+  testnet,
+  symbols,
+  streams,
+  apiKeyID,
+  apiKeySecret,
+  maxTableLen
+} from "./lib/config";
 
 const rootElement = document.getElementById("root");
 
@@ -14,7 +20,20 @@ const App = () => {
   const [toggled, setToggled] = useState(false);
   const [data, setData] = useState([]);
 
-  useEffect(() => {}, []);
+  const config = {
+    port,
+    testnet,
+    symbols,
+    streams,
+    apiKeyID,
+    apiKeySecret,
+    maxTableLen
+  };
+
+  useEffect(() => {
+    const app = initServer(config);
+    initWS(app);
+  }, []);
 
   const setToggle = () => {
     setToggled(!toggled);
