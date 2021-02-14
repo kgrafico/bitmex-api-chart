@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { render } from "react-dom";
 import Chart from "./Chart";
 import { initServer, initWS } from "./lib/serve";
-import { port } from "./lib/config";
+import config from "./lib/config";
+const app = initServer(config);
+initWS(app);
 
 const rootElement = document.getElementById("root");
 
@@ -11,6 +13,8 @@ import "./style.css";
 const App = () => {
   const [toggled, setToggled] = useState(false);
   const [data, setData] = useState([]);
+
+  useEffect(() => {}, []);
 
   const setToggle = () => {
     setToggled(!toggled);
