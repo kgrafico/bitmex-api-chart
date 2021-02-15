@@ -47,13 +47,32 @@ const Chart = (props: HighchartsReact.Props) => {
       const response = JSON.parse(event.data).data || [];
       console.log(response);
 
+      //foreignNotional: 12
+      //grossValue: 25140
+      //homeNotional: 0.0002514
+      //price: 47740.5
+      //side: "Sell"
+      //size: 12
+      //symbol: "XBTUSD"
+      //tickDirection: "ZeroPlusTick"
+      //timestamp: "2021-02-15T12:50:43.723Z"
+      //trdMatchID: "243ee4f2-7c7e-982f-d17f-5c8e0d3a953e"
+
       if (response.length) {
         response.forEach(el => {
           console.log("PRICE ->", el.price);
-          setDataBuyPrice(dataBuyPrice => [...dataBuyPrice, el.price]);
+          console.log("SIDE ->", el.side);
+
           // Set dataSellPrice & dataTradesPrice
+          if (el.side === "Sell") {
+            setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
+          }
+          if (el.side === "Buy") {
+            setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
+          }
         });
-        console.log("data ->", dataBuyPrice);
+        console.log("data Buy ->", dataBuyPrice);
+        console.log("data Sell ->", dataSellPrice);
       }
     };
     ws.onclose = () => {
