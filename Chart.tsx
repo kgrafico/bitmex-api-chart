@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const Chart = (props: HighchartsReact.Props) => {
+const Chart = (props: HighchartsReact.Props, toggle) => {
   const [data, setData] = useState(null);
   const ws = new WebSocket(
     "wss://www.bitmex.com/realtime?subscribe=trade:XBTUSD,liquidation:XBTUSD"
@@ -11,12 +11,16 @@ const Chart = (props: HighchartsReact.Props) => {
   const timeout = 60000;
   const options: Highcharts.Options = {
     title: {
-      text: "My chart"
+      text: "Beeks Analytics"
     },
     series: [
       {
-        type: "line",
-        data: [1, 2, 3]
+        name: "Installation",
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+      },
+      {
+        name: "Manufacturing",
+        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
       }
     ]
   };
@@ -43,7 +47,7 @@ const Chart = (props: HighchartsReact.Props) => {
     connect();
   }, []);
 
-  if (true) {
+  if (toggle) {
     return (
       <div>
         <HighchartsReact highcharts={Highcharts} options={options} {...props} />
