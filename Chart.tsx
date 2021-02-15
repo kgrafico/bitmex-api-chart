@@ -15,7 +15,7 @@ const Chart = (props: HighchartsReact.Props) => {
     },
     series: [
       {
-        name: "Installation",
+        name: "Prices",
         data: data
       },
       {
@@ -30,7 +30,9 @@ const Chart = (props: HighchartsReact.Props) => {
   useEffect(() => {
     const subscribe = {
       event: "bts:subscribe",
-      data: {}
+      data: {
+        channel: ``
+      }
     };
     ws.onopen = () => {
       console.log("connected websocket main component");
@@ -38,12 +40,20 @@ const Chart = (props: HighchartsReact.Props) => {
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data).data || [];
+      console.log(response);
 
       if (response !== [] && response !== undefined) {
         response.reduce((acc, el) => {
           console.log("PRICE", el.price);
         });
       }
+    };
+    ws.onclose = () => {
+      ws.close();
+    };
+
+    return () => {
+      ws.close();
     };
   }, []);
 
