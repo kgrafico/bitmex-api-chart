@@ -8,19 +8,38 @@ const Chart = (props: HighchartsReact.Props) => {
   );
 
   const timeout = 60000;
-  const [data, setData] = useState([1, 2, 3]);
+  const [dataBuyPrice, setDataBuyPrice] = useState([29742, 22345, 40434]);
+  const [dataSellPrice, setDataSellPrice] = useState([
+    34567,
+    34567,
+    34567,
+    12343
+  ]);
+
+  const [dataTradesPrice, setDataTradesPrice] = useState([
+    24916,
+    29742,
+    29851,
+    30282,
+    34566
+  ]);
+
   const options: Highcharts.Options = {
     title: {
-      text: "Beeks Analytics"
+      text: "Beeks Analytics Liquidation"
     },
     series: [
       {
-        name: "Liquidation",
-        data: data
+        name: "Buy",
+        data: dataBuyPrice
       },
       {
-        name: "Manufacturing",
-        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+        name: "Sell",
+        data: dataSellPrice
+      },
+      {
+        name: "Trades",
+        data: dataTradesPrice
       }
     ]
   };
@@ -40,13 +59,14 @@ const Chart = (props: HighchartsReact.Props) => {
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data).data || [];
+      console.log(response);
 
       if (response.length) {
         response.reduce((acc, el) => {
           console.log("PRICE", el.price);
-          setData(oldPrices => [...oldPrices, el.price]);
-          console.log("data", data);
+          setDataBuyPrice([...dataBuyPrice, el.price]);
         });
+        console.log("data", dataBuyPrice);
       }
     };
     ws.onclose = () => {
