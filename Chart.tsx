@@ -3,7 +3,6 @@ import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
 const Chart = (props: HighchartsReact.Props, toggle) => {
-  const [data, setData] = useState(null);
   const ws = new WebSocket(
     "wss://www.bitmex.com/realtime?subscribe=trade:XBTUSD,liquidation:XBTUSD"
   );
@@ -25,6 +24,8 @@ const Chart = (props: HighchartsReact.Props, toggle) => {
     ]
   };
 
+  const [data, setData] = useState(options);
+
   const connect = () => {
     const subscribe = {
       event: "bts:subscribe",
@@ -38,7 +39,6 @@ const Chart = (props: HighchartsReact.Props, toggle) => {
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data);
-      setData({ ws: ws });
       console.log(response.data);
     };
   };
@@ -50,7 +50,7 @@ const Chart = (props: HighchartsReact.Props, toggle) => {
   if (toggle) {
     return (
       <div>
-        <HighchartsReact highcharts={Highcharts} options={options} {...props} />
+        <HighchartsReact highcharts={Highcharts} options={data} {...props} />
       </div>
     );
   }
