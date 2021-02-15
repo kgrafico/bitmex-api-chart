@@ -15,7 +15,7 @@ const Chart = (props: HighchartsReact.Props) => {
     },
     series: [
       {
-        name: "Prices",
+        name: "Liquidation",
         data: data
       },
       {
