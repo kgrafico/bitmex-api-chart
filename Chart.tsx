@@ -44,9 +44,9 @@ const Chart = (props: HighchartsReact.Props) => {
       if (response != []) {
         response.reduce((acc, el) => {
           console.log("PRICE", el.price);
-          setData("hola");
+          //setData("hola");
           //setData(data => [...data, "hola"]);
-          console.log("data", data);
+          //console.log("data", data);
         });
       }
     };
