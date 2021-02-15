@@ -8,6 +8,16 @@ const Chart = (props: HighchartsReact.Props) => {
   );
 
   const timeout = 60000;
+  const [data, setData] = useState([
+    43934,
+    52503,
+    57177,
+    69658,
+    97031,
+    119931,
+    137133,
+    154175
+  ]);
   const options: Highcharts.Options = {
     title: {
       text: "Beeks Analytics"
@@ -15,7 +25,7 @@ const Chart = (props: HighchartsReact.Props) => {
     series: [
       {
         name: "Installation",
-        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+        data: data
       },
       {
         name: "Manufacturing",
@@ -24,7 +34,7 @@ const Chart = (props: HighchartsReact.Props) => {
     ]
   };
 
-  const [data, setData] = useState(options);
+  const [option, setOptions] = useState(options);
 
   const connect = () => {
     const subscribe = {
@@ -39,9 +49,10 @@ const Chart = (props: HighchartsReact.Props) => {
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data);
-      //console.log(response.data);
+
       response.data.reduce((acc, el) => {
         console.log("PRICE", el.price);
+        setData(oldPrice => [...oldPrice, el.price]);
       });
     };
   };
@@ -53,7 +64,7 @@ const Chart = (props: HighchartsReact.Props) => {
   if (true) {
     return (
       <div>
-        <HighchartsReact highcharts={Highcharts} options={data} {...props} />
+        <HighchartsReact highcharts={Highcharts} options={option} {...props} />
       </div>
     );
   }
