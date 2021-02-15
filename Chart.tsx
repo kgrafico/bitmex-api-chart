@@ -30,22 +30,23 @@ const Chart = (props: HighchartsReact.Props) => {
   const connect = () => {
     const subscribe = {
       event: "bts:subscribe",
-      data: {
-        channel: ``
-      }
+      data: {}
     };
     ws.onopen = () => {
       console.log("connected websocket main component");
       ws.send(JSON.stringify(subscribe));
     };
     ws.onmessage = event => {
-      const response = JSON.parse(event.data).data;
+      const response = JSON.parse(event.data).data || [];
+      let arr = [];
 
       if (response !== [] && response !== undefined) {
         response.reduce((acc, el) => {
           console.log("PRICE", el.price);
-          setData(data => [...data, el.price]);
+          setData([el.price]);
+          arr.push(el.price);
           console.log("data", data);
+          console.log("arr", arr);
         });
       }
     };
