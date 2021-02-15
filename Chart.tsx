@@ -53,6 +53,7 @@ const Chart = (props: HighchartsReact.Props) => {
         response.forEach(el => {
           console.log("PRICE ->", el.price);
           setDataBuyPrice(dataBuyPrice => [...dataBuyPrice, el.price]);
+          // Set dataSellPrice & dataTradesPrice
         });
         console.log("data ->", dataBuyPrice);
       }
