@@ -71,8 +71,6 @@ const Chart = (props: HighchartsReact.Props) => {
             setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
           }
         });
-        console.log("data Buy ->", dataBuyPrice);
-        console.log("data Sell ->", dataSellPrice);
       }
     };
     ws.onclose = () => {
