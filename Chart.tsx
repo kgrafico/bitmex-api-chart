@@ -16,7 +16,7 @@ const Chart = (props: HighchartsReact.Props) => {
     series: [
       {
         name: "Installation",
-        data: data
+        data: [1, 2, 3]
       },
       {
         name: "Manufacturing",
@@ -44,7 +44,7 @@ const Chart = (props: HighchartsReact.Props) => {
       if (response != []) {
         response.reduce((acc, el) => {
           console.log("PRICE", el.price);
-          setData(oldPrice => [...oldPrice, el.price]);
+          setData(data => [...data, "hola"]);
           console.log("data", data);
         });
       }
@@ -55,7 +55,7 @@ const Chart = (props: HighchartsReact.Props) => {
     connect();
   }, []);
 
-  if (true) {
+  if (props.toggle) {
     return (
       <div>
         <HighchartsReact highcharts={Highcharts} options={option} {...props} />
