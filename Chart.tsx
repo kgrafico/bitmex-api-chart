@@ -8,16 +8,7 @@ const Chart = (props: HighchartsReact.Props) => {
   );
 
   const timeout = 60000;
-  const [data, setData] = useState([
-    43934,
-    52503,
-    57177,
-    69658,
-    97031,
-    119931,
-    137133,
-    154175
-  ]);
+  const [data, setData] = useState([]);
   const options: Highcharts.Options = {
     title: {
       text: "Beeks Analytics"
@@ -52,7 +43,7 @@ const Chart = (props: HighchartsReact.Props) => {
 
       response.data.reduce((acc, el) => {
         console.log("PRICE", el.price);
-        setData(oldPrice => [...oldPrice, el.price]);
+        //setData(oldPrice => [...oldPrice, el.price]);
       });
     };
   };
