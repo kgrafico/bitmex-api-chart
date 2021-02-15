@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
 
-const Chart = (props: HighchartsReact.Props, toggle) => {
+const Chart = (props: HighchartsReact.Props) => {
   const ws = new WebSocket(
     "wss://www.bitmex.com/realtime?subscribe=trade:XBTUSD,liquidation:XBTUSD"
   );
@@ -39,7 +39,10 @@ const Chart = (props: HighchartsReact.Props, toggle) => {
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data);
-      console.log(response.data);
+      //console.log(response.data);
+      response.data.reduce((acc, el) => {
+        console.log("PRICE", el.price);
+      });
     };
   };
 
@@ -47,7 +50,7 @@ const Chart = (props: HighchartsReact.Props, toggle) => {
     connect();
   }, []);
 
-  if (toggle) {
+  if (true) {
     return (
       <div>
         <HighchartsReact highcharts={Highcharts} options={data} {...props} />
