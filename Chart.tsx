@@ -40,12 +40,12 @@ const Chart = (props: HighchartsReact.Props) => {
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data).data;
+      console.log(response);
 
-      if (response != []) {
+      if (response !== [] || response !== undefined) {
         response.reduce((acc, el) => {
           console.log("PRICE", el.price);
-          //setData("hola");
-          //setData(data => [...data, "hola"]);
+          //setData(data => [...data, el.price]);
           //console.log("data", data);
         });
       }
