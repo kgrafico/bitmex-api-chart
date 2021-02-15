@@ -34,11 +34,11 @@ const Chart = (props: HighchartsReact.Props, toggle) => {
     };
     ws.onopen = () => {
       console.log("connected websocket main component");
-      setData({ ws: ws });
       ws.send(JSON.stringify(subscribe));
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data);
+      setData({ ws: ws });
       console.log(response.data);
     };
   };
