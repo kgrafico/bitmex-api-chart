@@ -39,7 +39,7 @@ const Chart = (props: HighchartsReact.Props) => {
       ws.send(JSON.stringify(subscribe));
     };
     ws.onmessage = event => {
-      const response = JSON.parse(event.data).data || [{}];
+      const response = JSON.parse(event.data).data || [];
 
       response.reduce((acc, el) => {
         console.log("PRICE", el.price);
