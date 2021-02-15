@@ -65,7 +65,7 @@ const Chart = (props: HighchartsReact.Props) => {
 
           // Set dataSellPrice & dataTradesPrice
           if (el.side === "Sell") {
-            setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
+            setDataSellPrice(oldPrice => [...oldPrice, el.price]);
           }
           if (el.side === "Buy") {
             setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
