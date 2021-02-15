@@ -1,12 +1,25 @@
 import React, { useEffect, useState } from "react";
+import * as Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
 
-const Chart = ({ toggle }) => {
+const Chart = (props: HighchartsReact.Props) => {
   const [data, setData] = useState(null);
   const ws = new WebSocket(
     "wss://www.bitmex.com/realtime?subscribe=trade:XBTUSD,liquidation:XBTUSD"
   );
 
   const timeout = 60000;
+  const options: Highcharts.Options = {
+    title: {
+      text: "My chart"
+    },
+    series: [
+      {
+        type: "line",
+        data: [1, 2, 3]
+      }
+    ]
+  };
 
   const connect = () => {
     const subscribe = {
@@ -30,10 +43,10 @@ const Chart = ({ toggle }) => {
     connect();
   }, []);
 
-  if (toggle) {
+  if (true) {
     return (
       <div>
-        <h1>Hello</h1>
+        <HighchartsReact highcharts={Highcharts} options={options} {...props} />
       </div>
     );
   }
