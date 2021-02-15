@@ -32,8 +32,6 @@ const Chart = (props: HighchartsReact.Props) => {
     ]
   };
 
-  const [option, setOptions] = useState(options);
-
   useEffect(() => {
     const subscribe = {
       event: "bts:subscribe",
@@ -70,7 +68,7 @@ const Chart = (props: HighchartsReact.Props) => {
   if (props.toggle) {
     return (
       <div>
-        <HighchartsReact highcharts={Highcharts} options={option} {...props} />
+        <HighchartsReact highcharts={Highcharts} options={options} {...props} />
       </div>
     );
   }
