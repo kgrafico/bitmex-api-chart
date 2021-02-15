@@ -62,11 +62,11 @@ const Chart = (props: HighchartsReact.Props) => {
       console.log(response);
 
       if (response.length) {
-        response.reduce((acc, el) => {
-          console.log("PRICE", el.price);
+        response.forEach(el => {
+          console.log("PRICE ->", el.price);
           setDataBuyPrice([...dataBuyPrice, el.price]);
         });
-        console.log("data", dataBuyPrice);
+        console.log("data ->", dataBuyPrice);
       }
     };
     ws.onclose = () => {
