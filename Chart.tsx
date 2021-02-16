@@ -20,12 +20,14 @@ const Chart = (props: HighchartsReact.Props) => {
       text: "Beeks Analytics Liquidation"
     },
     yAxis: {
+      min: 30000,
       title: {
         text: "Prices"
       }
     },
     xAxis: {
-      title:{
+      type: "datetime",
+      title: {
         text: "Date"
       }
     },
