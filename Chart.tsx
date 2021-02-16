@@ -49,6 +49,33 @@ const Chart = (props: HighchartsReact.Props) => {
         name: "Trades",
         type: "column",
         data: dataTradesPrice
+      },
+      {
+        type: "pie",
+        name: "Total consumption",
+        data: [
+          {
+            name: "Buy",
+            y: dataBuyPrice.length,
+            color: Highcharts.getOptions().colors[0]
+          },
+          {
+            name: "Sell",
+            y: dataSellPrice.length,
+            color: Highcharts.getOptions().colors[1]
+          },
+          {
+            name: "Trade",
+            y: dataTradesPrice[dataTradesPrice.length - 1],
+            color: Highcharts.getOptions().colors[2]
+          }
+        ],
+        center: [100, 80],
+        size: 100,
+        showInLegend: false,
+        dataLabels: {
+          enabled: false
+        }
       }
     ],
     legend: {
