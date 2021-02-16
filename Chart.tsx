@@ -13,7 +13,7 @@ const Chart = (props: HighchartsReact.Props) => {
   const [dataBuyPrice, setDataBuyPrice] = useState([]);
   const [dataSellPrice, setDataSellPrice] = useState([]);
   const [dataTradesPrice, setDataTradesPrice] = useState([]);
-  const [time, setTime] = useState(null);
+  const [time, setTime] = useState([]);
   const [min, setMin] = useState(48000);
   const [max, setMax] = useState(49000);
 
@@ -32,7 +32,8 @@ const Chart = (props: HighchartsReact.Props) => {
       type: "datetime",
       title: {
         text: "Date"
-      }
+      },
+      categories: time
     },
     series: [
       {
@@ -130,8 +131,12 @@ const Chart = (props: HighchartsReact.Props) => {
           if (el.side === "Buy") {
             setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
           }
-        });
 
+          setTime(oldTime => [
+            ...oldTime,
+            new Date(el.timestamp).setHours(0, 0, 0, 0)
+          ]);
+        });
         setDataTradesPrice(oldTrade => [
           ...oldTrade,
           dataSellPrice.length + dataBuyPrice.length
