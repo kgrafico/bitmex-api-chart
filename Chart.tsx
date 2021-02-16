@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import * as Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import HC_more from "highcharts/highcharts-more"; //module
+HC_more(Highcharts); //init module
 
 const Chart = (props: HighchartsReact.Props) => {
   const ws = new WebSocket(
@@ -16,6 +18,11 @@ const Chart = (props: HighchartsReact.Props) => {
     title: {
       text: "Beeks Analytics Liquidation"
     },
+    yAxis: {
+      title: {
+        text: "Prices"
+      }
+    },
     series: [
       {
         name: "Buy",
@@ -29,7 +36,20 @@ const Chart = (props: HighchartsReact.Props) => {
         name: "Trades",
         data: dataTradesPrice
       }
-    ]
+    ],
+    legend: {
+      layout: "vertical",
+      align: "right",
+      verticalAlign: "middle"
+    },
+    plotOptions: {
+      series: {
+        label: {
+          connectorAllowed: false
+        },
+        pointStart: 1
+      }
+    }
   };
 
   useEffect(() => {
@@ -84,7 +104,12 @@ const Chart = (props: HighchartsReact.Props) => {
   if (props.toggle) {
     return (
       <div>
-        <HighchartsReact highcharts={Highcharts} options={options} {...props} />
+        <HighchartsReact
+          constructorType={"chart"}
+          highcharts={Highcharts}
+          options={options}
+          {...props}
+        />
       </div>
     );
   }
