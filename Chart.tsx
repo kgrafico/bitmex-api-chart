@@ -12,7 +12,6 @@ const Chart = (props: HighchartsReact.Props) => {
   const timeout = 60000;
   const [dataBuyPrice, setDataBuyPrice] = useState([]);
   const [dataSellPrice, setDataSellPrice] = useState([]);
-  const [dataTradesPrice, setDataTradesPrice] = useState([]);
   const [time, setTime] = useState([]);
   const [min, setMin] = useState(48000);
   const [max, setMax] = useState(49000);
@@ -47,11 +46,6 @@ const Chart = (props: HighchartsReact.Props) => {
         data: dataSellPrice
       },
       {
-        name: "Trades",
-        type: "column",
-        data: dataTradesPrice
-      },
-      {
         type: "pie",
         name: "Total consumption",
         data: [
@@ -71,7 +65,7 @@ const Chart = (props: HighchartsReact.Props) => {
             color: Highcharts.getOptions().colors[2]
           }
         ],
-        center: [100, 80],
+        center: [100, 220],
         size: 100,
         showInLegend: false,
         dataLabels: {
@@ -136,10 +130,6 @@ const Chart = (props: HighchartsReact.Props) => {
             new Date(el.timestamp).toTimeString().split(" ")[0]
           ]);
         });
-        setDataTradesPrice(oldTrade => [
-          ...oldTrade,
-          dataSellPrice.length + dataBuyPrice.length
-        ]);
       }
     };
     ws.onclose = () => {
