@@ -88,8 +88,7 @@ const Chart = (props: HighchartsReact.Props) => {
       series: {
         label: {
           connectorAllowed: false
-        },
-        pointStart: new Date().setHours(0, 0, 0, 0)
+        }
       }
     }
   };
