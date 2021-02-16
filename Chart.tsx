@@ -90,8 +90,10 @@ const Chart = (props: HighchartsReact.Props) => {
 
       if (response.length) {
         response.forEach(el => {
-          // Set dataSellPrice & dataTradesPrice
+          setMin(el.price - 300);
+          setMax(el.price + 300);
 
+          // Set dataSellPrice & dataTradesPrice
           if (el.side === "Sell") {
             setDataSellPrice(oldPrice => [...oldPrice, el.price]);
             setDataTradesPrice(oldTrade => [...oldTrade, oldTrade.length + 1]);
