@@ -66,7 +66,7 @@ const Chart = (props: HighchartsReact.Props) => {
           },
           {
             name: "Trade",
-            y: dataTradesPrice[dataTradesPrice.length - 1],
+            y: dataSellPrice.length + dataBuyPrice.length,
             color: Highcharts.getOptions().colors[2]
           }
         ],
@@ -126,13 +126,16 @@ const Chart = (props: HighchartsReact.Props) => {
           // Set dataSellPrice & dataTradesPrice
           if (el.side === "Sell") {
             setDataSellPrice(oldPrice => [...oldPrice, el.price]);
-            setDataTradesPrice(oldTrade => [...oldTrade, oldTrade.length + 1]);
           }
           if (el.side === "Buy") {
             setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
-            setDataTradesPrice(oldTrade => [...oldTrade, oldTrade.length + 1]);
           }
         });
+
+        setDataTradesPrice(oldTrade => [
+          ...oldTrade,
+          dataSellPrice.length + dataBuyPrice.length
+        ]);
       }
     };
     ws.onclose = () => {
