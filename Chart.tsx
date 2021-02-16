@@ -13,6 +13,7 @@ const Chart = (props: HighchartsReact.Props) => {
   const [dataBuyPrice, setDataBuyPrice] = useState([0]);
   const [dataSellPrice, setDataSellPrice] = useState([0]);
   const [dataTradesPrice, setDataTradesPrice] = useState([0]);
+  const [time, setTime] = useState(null);
 
   const options: Highcharts.Options = {
     title: {
