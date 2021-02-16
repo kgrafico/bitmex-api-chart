@@ -21,7 +21,7 @@ const Chart = (props: HighchartsReact.Props) => {
     },
     yAxis: {
       min: 45000,
-      max: 50000,
+      max: 49000,
       title: {
         text: "Prices"
       }
