@@ -12,7 +12,7 @@ const Chart = (props: HighchartsReact.Props) => {
   const timeout = 60000;
   const [dataBuyPrice, setDataBuyPrice] = useState([]);
   const [dataSellPrice, setDataSellPrice] = useState([]);
-  const [dataTradesPrice, setDataTradesPrice] = useState([0]);
+  const [dataTradesPrice, setDataTradesPrice] = useState([]);
   const [time, setTime] = useState(null);
   const [min, setMin] = useState(48000);
   const [max, setMax] = useState(49000);
