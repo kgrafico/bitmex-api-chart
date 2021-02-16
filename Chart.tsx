@@ -20,7 +20,7 @@ const Chart = (props: HighchartsReact.Props) => {
       text: "Beeks Analytics Liquidation"
     },
     yAxis: {
-      min: 30000,
+      min: 40000,
       title: {
         text: "Prices"
       }
