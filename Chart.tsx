@@ -14,14 +14,16 @@ const Chart = (props: HighchartsReact.Props) => {
   const [dataSellPrice, setDataSellPrice] = useState([0]);
   const [dataTradesPrice, setDataTradesPrice] = useState([0]);
   const [time, setTime] = useState(null);
+  const [min, setMin] = useState(48000);
+  const [max, setMax] = useState(50000);
 
   const options: Highcharts.Options = {
     title: {
       text: "Beeks Analytics Liquidation"
     },
     yAxis: {
-      min: 48000,
-      max: 50000,
+      min: min,
+      max: max,
       title: {
         text: "Prices"
       }
