@@ -24,6 +24,11 @@ const Chart = (props: HighchartsReact.Props) => {
         text: "Prices"
       }
     },
+    xAxis: {
+      title:{
+        text: "Date"
+      }
+    },
     series: [
       {
         name: "Buy",
@@ -48,7 +53,7 @@ const Chart = (props: HighchartsReact.Props) => {
         label: {
           connectorAllowed: false
         },
-        pointStart: 1
+        pointStart: new Date().setHours(0, 0, 0, 0)
       }
     }
   };
