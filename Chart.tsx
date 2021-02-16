@@ -134,7 +134,7 @@ const Chart = (props: HighchartsReact.Props) => {
 
           setTime(oldTime => [
             ...oldTime,
-            new Date(el.timestamp).setHours(0, 0, 0, 0)
+            new Date(el.timestamp).toTimeString().split(" ")[0]
           ]);
         });
         setDataTradesPrice(oldTrade => [
