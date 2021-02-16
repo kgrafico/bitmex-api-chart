@@ -46,6 +46,11 @@ const Chart = (props: HighchartsReact.Props) => {
         data: dataSellPrice
       },
       {
+        name: "Trade",
+        type: "spline",
+        data: []
+      },
+      {
         type: "pie",
         name: "Total consumption",
         data: [
