@@ -45,7 +45,6 @@ const Chart = (props: HighchartsReact.Props) => {
     };
     ws.onmessage = event => {
       const response = JSON.parse(event.data).data || [];
-      console.log(response);
 
       //foreignNotional: 12
       //grossValue: 25140
@@ -60,22 +59,17 @@ const Chart = (props: HighchartsReact.Props) => {
 
       if (response.length) {
         response.forEach(el => {
-          console.log("PRICE ->", el.price);
-          console.log("SIDE ->", el.side);
-
           // Set dataSellPrice & dataTradesPrice
+
           if (el.side === "Sell") {
             setDataSellPrice(oldPrice => [...oldPrice, el.price]);
+            setDataTradesPrice(oldTrade => [...oldTrade, oldTrade.length + 1]);
           }
           if (el.side === "Buy") {
             setDataBuyPrice(oldPrice => [...oldPrice, el.price]);
+            setDataTradesPrice(oldTrade => [...oldTrade, oldTrade.length + 1]);
           }
         });
-
-        setDataTradesPrice(oldTrade => [
-          ...oldTrade,
-          dataBuyPrice.length + dataSellPrice.length
-        ]);
       }
     };
     ws.onclose = () => {
