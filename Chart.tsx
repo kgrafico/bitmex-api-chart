@@ -37,14 +37,17 @@ const Chart = (props: HighchartsReact.Props) => {
     series: [
       {
         name: "Buy",
+        type: "spline",
         data: dataBuyPrice
       },
       {
         name: "Sell",
+        type: "spline",
         data: dataSellPrice
       },
       {
         name: "Trades",
+        type: "column",
         data: dataTradesPrice
       }
     ],
