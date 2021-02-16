@@ -65,7 +65,7 @@ const Chart = (props: HighchartsReact.Props) => {
             color: Highcharts.getOptions().colors[2]
           }
         ],
-        center: [100, 220],
+        center: [100, 20],
         size: 100,
         showInLegend: false,
         dataLabels: {
